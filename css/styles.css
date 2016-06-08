@@ -1,0 +1,17 @@
+/* HEADER */
+.header {
+	width:100%;
+	height:50px;
+	border-bottom:1px solid #ccc;
+}
+.logo {
+	float:left;
+	width:70%;
+}
+a.showDrawer{
+	background:url('/images/drawerIcon.png') no-repeat;
+	height:50px;
+	width:50px;
+}
+
+/* EVENT SCREEN */
