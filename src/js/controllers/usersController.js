@@ -33,7 +33,6 @@ function UserController(User, TokenService) {
   }
 
   self.getUsers = function() {
-    console.log(User.query());
     self.allUsers = User.query();
     self.user = TokenService.getUser();
   };
@@ -45,6 +44,5 @@ function UserController(User, TokenService) {
   if (self.isLoggedIn()) {
     self.getUsers();
     self.user = TokenService.getUser();
-    console.log(self.user._doc.local.fullname);
   };
 }

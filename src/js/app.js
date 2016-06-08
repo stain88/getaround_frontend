@@ -23,6 +23,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('event', {
       url: "/event",
       templateUrl: "views/event.html"
+    })
+    .state('history', {
+      url: "/history",
+      templateUrl: "views/history.html"
     });
 
   $urlRouterProvider.otherwise('/');
