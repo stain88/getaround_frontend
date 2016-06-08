@@ -3,6 +3,7 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var livereload = require('gulp-livereload');
+var replace = require('gulp-replace');
 var jshint = require('gulp-jshint');
 
 // jshint
@@ -64,7 +65,6 @@ gulp.task('default', function() {
       'jshint',
       'js-concat',
       'uglify',
-      'replace:production',
       function() { livereload.reload('index.html'); }
     ]
   );
