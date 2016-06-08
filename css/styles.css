@@ -23,7 +23,13 @@ div.container{
 div.ng-scope{
 	height:100%;
 }
-
+section.ng-scope{
+	background: rgba(255, 255, 255, 0.8);
+	top: 0;
+	position: relative;
+	height: 100%;
+	padding-top: 15%;
+}
  fieldset{
  	border:none;
  }
