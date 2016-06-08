@@ -324,22 +324,20 @@ var pos;
 
 
 function get_location(){
-
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-    pos = {
-        lat: position.coords.latitude,
-        lng: position.coords.longitude
-      };
-      
-    startMap();
-    });
-  } else {
-    // Browser doesn't support Geolocation
-	console.log("error: doesn't support geolocation");
-}
-
-
+	if (navigator.geolocation) {
+		navigator.geolocation.getCurrentPosition(function(position) {
+			pos = {
+				lat: position.coords.latitude,
+				lng: position.coords.longitude
+			};
+		
+			startMap();
+		});
+	
+	} else {
+	// Browser doesn't support Geolocation
+		console.log("error: doesn't support geolocation");
+	}
 }
 
 
@@ -366,22 +364,29 @@ map.controls[google.maps.ControlPosition.BOTTOM_CENTER].push(centerControlDiv);
   
 
   infowindow = new google.maps.InfoWindow();
-  
-  
-  
-  var bars = new google.maps.places.PlacesService(map);
+var bars = new google.maps.places.PlacesService(map);
   bars.nearbySearch({
     location: pos,
-    radius: 1000,
-    type: "bar"
+    types: ['bar'],
+    rankBy: google.maps.places.RankBy.DISTANCE
   }, callback);
   
-  var restaurants = new google.maps.places.PlacesService(map);
+  
+ var restaurants = new google.maps.places.PlacesService(map);
   restaurants.nearbySearch({
     location: pos,
-    radius: 1000,
-    type: "restaurant"
+    types: ['restaurant'],
+    rankBy: google.maps.places.RankBy.DISTANCE
   }, callback);
+  
+ 
+  
+//   var restaurants = new google.maps.places.PlacesService(map);
+//   restaurants.nearbySearch({
+//     location: pos,
+//     radius: 1000,
+//     types: "restaurant"
+//   }, callback);
   
   
 }
@@ -390,6 +395,7 @@ function callback(results, status) {
   if (status === google.maps.places.PlacesServiceStatus.OK) {
     for (var i = 0; i < results.length; i++) {
       createMarker(results[i]);
+      console.log(results[i]);
     }
   }
 }
@@ -397,7 +403,8 @@ function callback(results, status) {
 function CenterControl(controlDiv, map) {
 
         // Set CSS for the control border.
-        var controlUI = document.createElement('div');
+        var controlUI = document.createElement('a');
+        controlUI.style.display = 'inline-block';
         controlUI.style.backgroundColor = '#37c1f0';
         controlUI.style.border = '2px solid #4c4c4d';
         controlUI.style.borderRadius = '15px';
@@ -405,11 +412,12 @@ function CenterControl(controlDiv, map) {
         controlUI.style.cursor = 'pointer';
         controlUI.style.marginBottom = '50px';
         controlUI.style.textAlign = 'center';
-        controlUI.title = 'Click to recenter the map';
+        controlUI.style.textDecoration = 'none';
+        controlUI.href="/event";
         controlDiv.appendChild(controlUI);
 
         // Set CSS for the control interior.
-        var controlText = document.createElement('div');
+        var controlText = document.createElement('span');
         controlText.style.color = '#ffffff';
         controlText.style.fontFamily = 'Helvetica,Arial,sans-serif';
         controlText.style.fontSize = '16px';
