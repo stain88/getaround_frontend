@@ -61,14 +61,6 @@ var bars = new google.maps.places.PlacesService(map);
   
  
   
-//   var restaurants = new google.maps.places.PlacesService(map);
-//   restaurants.nearbySearch({
-//     location: pos,
-//     radius: 1000,
-//     types: "restaurant"
-//   }, callback);
-  
-  
 }
 
 function callback(results, status) {

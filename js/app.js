@@ -33,6 +33,20 @@ function MainRouter($stateProvider, $urlRouterProvider) {
 }
 angular
   .module('GetARoundApp')
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+  return $resource(API+'/users/:id', null, {
+    'login': {method: "POST", url:API+'/login'},
+    'register':{method:"POST", url:API+'/register'},
+    'query': {method:"GET", isArray: false,transformResponse: function(data) {
+      return angular.fromJson(data);
+    }}
+  });
+};
+angular
+  .module('GetARoundApp')
   .controller('usersController', UserController);
 
 UserController.$inject = ['User', 'TokenService'];
@@ -79,20 +93,6 @@ function UserController(User, TokenService) {
     self.user = TokenService.getUser();
   };
 }
-angular
-  .module('GetARoundApp')
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-  return $resource(API+'/users/:id', null, {
-    'login': {method: "POST", url:API+'/login'},
-    'register':{method:"POST", url:API+'/register'},
-    'query': {method:"GET", isArray: false,transformResponse: function(data) {
-      return angular.fromJson(data);
-    }}
-  });
-};
 angular
   .module('GetARoundApp')
   .factory('AuthInterceptor', AuthInterceptor);
@@ -380,14 +380,6 @@ var bars = new google.maps.places.PlacesService(map);
   }, callback);
   
  
-  
-//   var restaurants = new google.maps.places.PlacesService(map);
-//   restaurants.nearbySearch({
-//     location: pos,
-//     radius: 1000,
-//     types: "restaurant"
-//   }, callback);
-  
   
 }
 
