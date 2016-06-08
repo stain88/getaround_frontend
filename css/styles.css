@@ -10,12 +10,13 @@ body{
 	width:100%;
 	height:50px;
 	border-bottom:1px solid #ccc;
-	position:fixed;
 	top:0;
 }
 .logo {
 	float:left;
-	width:70%;
+	width:300px;
+	height:40px;
+	margin:5px 0 0 2%;
 }
 button.drawer-toggle{
 	background:url('/images/drawerIcon.png') no-repeat red;
@@ -24,8 +25,23 @@ button.drawer-toggle{
 	float:right;
 }
 
+.name{
+	font-weight: bold;
+	font-size:1.5em;
+	text-transform:uppercase;
+}
+.drawer-menu-item{
+	text-align:center;
+}
+a.drawer-menu-item:hover{
+	text-decoration:none;
+}
+
 /* EVENT SCREEN */
-p.location{
+.eventMain{
+	clear:both;
+}
+h1.location{
 	font-weight:bold;
 	text-align:center;
 }
@@ -50,7 +66,7 @@ p.location{
 .buttons{
 	position:absolute;
 	bottom:0;
-	height:50px;
+	height:60px;
 	width:100%;
 }
 .buttons a{
@@ -60,11 +76,12 @@ p.location{
 	margin:5px 5% 0 5%;
 	padding:10px 0 0;
 	border-radius:5px;
-	background:orange;
+	background:#37c1f0;
+	border:1px solid #333;
 	text-align:center;
 	text-decoration:none;
-	color:#fff;
+	color:#333;
 }
 .buttons a:hover{
-	background-color:red;
+	background-color:turquoise;
 }
