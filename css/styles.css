@@ -14,16 +14,17 @@ h1{
 
 /* REGISTER / LOGIN */
 div.container{
-	background: rgba(255, 255, 255, 0.8);
 	margin: 0;
 	position: absolute;
 	height: 100%;
 	width: 100%;;
 	z-index: 9
 }
+div.ng-scope{
+	height:100%;
+}
 
  fieldset{
- 	margin-top:15%;
  	border:none;
  }
 .form-horizontal input{
