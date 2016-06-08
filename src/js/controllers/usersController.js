@@ -2,9 +2,11 @@ angular
   .module('GetARoundApp')
   .controller('usersController', UserController);
 
-UserController.$inject = ['User', 'TokenService'];
-function UserController(User, TokenService) {
+UserController.$inject = ['User', 'TokenService', '$location'];
+function UserController(User, TokenService, $location) {
   var self = this;
+
+  self.location = $location.path();
 
   self.allUsers = [];
   self.user = {};

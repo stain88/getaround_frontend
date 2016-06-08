@@ -20,6 +20,10 @@ function MainRouter($stateProvider, $urlRouterProvider) {
       url: "/register",
       templateUrl: "views/register.html"
     })
+    .state('profile', {
+      url: "/profile",
+      templateUrl: "views/profile.html"
+    })
     .state('event', {
       url: "/event",
       templateUrl: "views/event.html"
