@@ -34,10 +34,10 @@
     </nav>
   </header>
 
+  <div id="map" ng-show="users.location === '/'"></div>
   <div class="container">
     <div ui-view></div>
   </div>
-  <div id="map" ng-show="users.location === '/'"></div>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF7k9s8ZhRzN-LCi2VF3YF2q0VSP651b4&callback=get_location&libraries=places"
     async defer></script>

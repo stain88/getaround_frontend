@@ -85,7 +85,7 @@ function CenterControl(controlDiv, map) {
         controlUI.style.marginBottom = '50px';
         controlUI.style.textAlign = 'center';
         controlUI.style.textDecoration = 'none';
-        controlUI.href="/event";
+        controlUI.href="/#/event";
         controlDiv.appendChild(controlUI);
 
         // Set CSS for the control interior.
