@@ -12,6 +12,40 @@ h1{
 	text-align:center;
 }
 
+/* REGISTER / LOGIN */
+div.container{
+	background: rgba(255, 255, 255, 0.8);
+	margin: 0;
+	position: absolute;
+	height: 100%;
+	width: 100%;;
+	z-index: 9
+}
+
+ fieldset{
+ 	margin-top:15%;
+ 	border:none;
+ }
+.form-horizontal input{
+	padding:5px;
+	background:#f3ec19;
+	color:#000;
+	display:block;
+	margin: 15px auto;
+}
+button{	
+	height:30px;
+	width:140px;
+	margin:5px 1% 0;
+	padding:0 10px 0;
+	border-radius:5px;
+	background:#37c1f0;
+	text-align:center;
+	text-decoration:none;
+	color:#fff;
+	font-weight:bold;
+	border:none;
+}
 /* HEADER */
 .header {
 	width:100%;
