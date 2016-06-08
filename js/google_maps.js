@@ -46,14 +46,14 @@ function startMap() {
   var service = new google.maps.places.PlacesService(map);
   service.nearbySearch({
     location: pos,
-    radius: 500,
+    radius: 1000,
     type: "bar"
   }, callback);
   
   var service2 = new google.maps.places.PlacesService(map);
   service2.nearbySearch({
     location: pos,
-    radius: 500,
+    radius: 1000,
     type: "restaurant"
   }, callback);
   
@@ -71,14 +71,17 @@ function callback(results, status) {
 
 
 function createMarker(place) {
+
+	var image = 'img/event_location.png';
   var placeLoc = place.geometry.location;
   var marker = new google.maps.Marker({
     map: map,
-    position: place.geometry.location
+    position: place.geometry.location,
+	icon: image
   });
 
   google.maps.event.addListener(marker, 'click', function() {
-    infowindow.setContent(place.name + "<br /><a href=\"event.html\">Go to Event page</a>");
+    infowindow.setContent("<div class=\"infowindow\">" + place.name + "<br /><a href=\"event.html\">Go to Event page</a> </div>");
     infowindow.open(map, this);
   });
 }
