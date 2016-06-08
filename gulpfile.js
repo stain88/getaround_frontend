@@ -13,11 +13,11 @@ gulp.task('jshint', function() {
 
 // concat js into one min file javascript.min.js
 gulp.task('js-min', function() {
-  return gulp.src(['js/app.js', 'js/**/*.js'])
-    .pipe(concat('javascript.js'))
+  return gulp.src(['src/js/app.js', 'src/js/**/*.js'])
+    .pipe(concat('app.js'))
     .pipe(gulp.dest('js'))
     .pipe(uglify())
-    .pipe(rename('javascript.min.js'))
+    .pipe(rename('app.min.js'))
     .pipe(gulp.dest('js'));
 });
 
@@ -63,6 +63,8 @@ gulp.task('default', function() {
     [
       'jshint',
       'js-concat',
+      'uglify',
+      'replace:production',
       function() { livereload.reload('index.html'); }
     ]
   );
