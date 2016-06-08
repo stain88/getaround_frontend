@@ -19,10 +19,28 @@ function MainRouter($stateProvider, $urlRouterProvider) {
     .state('register', {
       url: "/register",
       templateUrl: "views/register.html"
+    })
+    .state('event', {
+      url: "/event",
+      templateUrl: "views/event.html"
     });
 
   $urlRouterProvider.otherwise('/');
 }
+angular
+  .module('GetARoundApp')
+  .factory('User', User);
+
+User.$inject = ['$resource', 'API'];
+function User($resource, API) {
+  return $resource(API+'/users/:id', null, {
+    'login': {method: "POST", url:API+'/login'},
+    'register':{method:"POST", url:API+'/register'},
+    'query': {method:"GET", isArray: false,transformResponse: function(data) {
+      return angular.fromJson(data);
+    }}
+  });
+};
 angular
   .module('GetARoundApp')
   .controller('usersController', UserController);
@@ -60,6 +78,7 @@ function UserController(User, TokenService) {
   self.getUsers = function() {
     console.log(User.query());
     self.allUsers = User.query();
+    self.user = TokenService.getUser();
   };
 
   self.isLoggedIn = function() {
@@ -69,22 +88,9 @@ function UserController(User, TokenService) {
   if (self.isLoggedIn()) {
     self.getUsers();
     self.user = TokenService.getUser();
+    console.log(self.user._doc.local.fullname);
   };
 }
-angular
-  .module('GetARoundApp')
-  .factory('User', User);
-
-User.$inject = ['$resource', 'API'];
-function User($resource, API) {
-  return $resource(API+'/users/:id', null, {
-    'login': {method: "POST", url:API+'/login'},
-    'register':{method:"POST", url:API+'/register'},
-    'query': {method:"GET", isArray: true,transformResponse: function(data) {
-      return angular.fromJson(data);
-    }}
-  });
-};
 angular
   .module('GetARoundApp')
   .factory('AuthInterceptor', AuthInterceptor);
@@ -394,3 +400,6 @@ function createMarker(place) {
     infowindow.open(map, this);
   });
 }
+$(document).ready(function() {
+  $('.drawer').drawer();
+});

@@ -24,7 +24,7 @@ gulp.task('js-min', function() {
 
 // Only Concat files javascript.js
 gulp.task('js-concat', function() {
-  return gulp.src(['src/js/app.js', 'src/js/**/*.js'])
+  return gulp.src(['src/js/app.js', 'src/js/lodash.core.js', 'src/js/**/*.js'])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('js'))
 });

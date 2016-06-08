@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>GetARound</title>
+
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
   <script src="https://cdn.rawgit.com/auth0/angular-jwt/master/dist/angular-jwt.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-resource.min.js"></script>
@@ -11,10 +12,12 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.1.3/iscroll.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script>
   <script src="js/app.js"></script>
+  <script src="js/google_maps.js"></script>
+
   <link rel="stylesheet" href="css/drawer.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
-<body ng-app="GetARoundApp" ng-controller="usersController as users">
+<body ng-app="GetARoundApp" ng-controller="usersController as users" class="drawer drawer--left">
   <header>
     <div class="header">
       <img src="images/logo.png" class="logo" />
@@ -22,19 +25,15 @@
     </div>
     <nav class="drawer-nav" role="navigation">
       <ul class="drawer-menu">
-        <li><img src="images/chris.jpg" /></li>
-        <li><a class="drawer-menu-item" ui-sref="profile">Jessica Jolly</a></li>
+        <li ng-if="!users.isLoggedIn()"><a class="drawer-menu-item" ui-sref="login">Log In</a></li>
+        <li ng-if="!users.isLoggedIn()"><a class="drawer-menu-item" ui-sref="register">Register</a></li>
+        <li ng-if="users.isLoggedIn()"><a class="drawer-menu-item" ng-click="users.logout()">Log Out</a></li>
+        <li ng-if="users.isLoggedIn()"><a class="drawer-menu-item" ui-sref="profile">{{users.user._doc.local.fullname}}</a></li>
         <li><a class="drawer-menu-item" ui-sref="profile">Edit Profile</a></li>
         <li><a class="drawer-menu-item" href="history.html">History</a></li>
         <li><a class="drawer-menu-item" href="index.html">Check-In</a></li>
       </ul>
     </nav>
-    <script>
-      $(document).ready(function() {
-        $('.drawer').drawer();
-      });
-    </script>
-
   </header>
   <div class="container">
     <div ui-view></div>
